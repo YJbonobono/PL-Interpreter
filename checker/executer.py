@@ -1,9 +1,11 @@
 import re
 global s
+global z
 global ARIstack
 rsv = ['variable', 'call', 'print_ari']
 ARIstack = []
 funcstack = []
+z = 0
 
 def interpreter(func):
     # 메인함수부터 시작
@@ -12,6 +14,7 @@ def interpreter(func):
     slist = s.split(';')
     slist = list(filter(None, slist))
     i = 0
+    z = 0
     for sentence in slist:
         ss = sentence.strip()
         if rsv[0] in ss:  # variable
@@ -26,7 +29,7 @@ def interpreter(func):
                     i+=1
         elif rsv[1] in ss: # call
             newName = (ss[4:]).strip()
-            callFunc('main', newName, func)
+            callFunc('main', newName, func, z)
         elif rsv[2] in ss:
             printAri()
         else:
@@ -37,7 +40,7 @@ def interpreter(func):
                     break
     return 0
 
-def callFunc(orname, funcName, func):
+def callFunc(orname, funcName, func, z):
     local_var = []
     s = func[funcName]
     funcstack.append(funcName)
@@ -46,7 +49,10 @@ def callFunc(orname, funcName, func):
     i = 0
     ARIstack.append([funcName, 'Return Address', orname, i])
     i+=1
-    ARIstack.append([funcName, 'Dynamic Link', i])
+    #print(z)
+    ARIstack.append([funcName, 'Dynamic Link', z])
+    z+=2
+    #print(z)
     i+=1
     for sentence in slist:
         ss = sentence.strip()
@@ -62,7 +68,7 @@ def callFunc(orname, funcName, func):
                     i+=1
         elif rsv[1] in ss: # call
             newName = (ss[4:]).strip()
-            callFunc(funcName, newName, func)
+            callFunc(funcName, newName, func, z)
         elif rsv[2] in ss:
             printAri()
         else:
