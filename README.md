@@ -8,11 +8,11 @@ Interpreter (Deep-Access) Implementation for Programming Languages class in Chun
 
 #### Execution
 ```
-python main.py location/text.txt
+python main.py location/test.txt
 ```
 
 #### Example
 ###### Recommend locating '.txt' in the same folder as 'main.py'
 ```
-python main.py text.txt
+python main.py test.txt
 ```
