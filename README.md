@@ -4,14 +4,15 @@ Interpreter (Deep-Access) Implementation for Programming Languages class in Chun
 ## Usage
 
 ##### Entry point : main.py
-###### Recommend locating '.txt' in the same folder as 'main.py'
+
+
 #### Execution
 ```
-python main.py txtLocation
+python main.py location/text.txt
 ```
 
 #### Example
+###### Recommend locating '.txt' in the same folder as 'main.py'
 ```
-# if text.txt is in main.py
 python main.py text.txt
 ```
